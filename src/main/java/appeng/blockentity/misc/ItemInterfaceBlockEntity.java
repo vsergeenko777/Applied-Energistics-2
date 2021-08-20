@@ -34,8 +34,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 
 import appeng.api.AEApi;
 import appeng.api.implementations.IUpgradeableObject;
@@ -207,15 +206,6 @@ public class ItemInterfaceBlockEntity extends AENetworkInvBlockEntity
      */
     public boolean isOmniDirectional() {
         return this.omniDirectional;
-    }
-
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        LazyOptional<T> result = this.duality.getCapability(capability, facing);
-        if (result.isPresent()) {
-            return result;
-        }
-        return super.getCapability(capability, facing);
     }
 
     @Override

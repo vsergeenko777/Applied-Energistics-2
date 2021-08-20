@@ -24,6 +24,8 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -35,8 +37,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import appeng.api.AEApi;
 import appeng.api.config.Actionable;
@@ -68,6 +68,12 @@ import appeng.items.misc.EncodedPatternItem;
 import appeng.menu.NullMenu;
 import appeng.parts.automation.DefinitionUpgradeInventory;
 import appeng.parts.automation.UpgradeInventory;
+import appeng.util.CraftingRemainders;
+import appeng.util.InventoryAdaptor;
+import appeng.util.helpers.ItemHandlerUtil;
+import appeng.util.inv.InvOperation;
+import appeng.util.inv.WrapperChainedItemHandler;
+import appeng.util.inv.WrapperFilteredItemHandler;
 import appeng.util.Platform;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.CombinedInternalInventory;
@@ -98,7 +104,7 @@ public class MolecularAssemblerBlockEntity extends AENetworkInvBlockEntity
     private boolean forcePlan = false;
     private boolean reboot = true;
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     private AssemblerAnimationStatus animationStatus;
 
     public MolecularAssemblerBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
@@ -364,7 +370,7 @@ public class MolecularAssemblerBlockEntity extends AENetworkInvBlockEntity
                 this.pushOut(output.copy());
 
                 for (int x = 0; x < this.craftingInv.getContainerSize(); x++) {
-                    this.gridInv.setItemDirect(x, Platform.getContainerItem(this.craftingInv.getItem(x)));
+                    this.gridInv.setItemDirect(x, CraftingRemainders.getRemainder(this.craftingInv.getItem(x)));
                 }
 
                 if (this.patternInv.isEmpty()) {
@@ -489,12 +495,12 @@ public class MolecularAssemblerBlockEntity extends AENetworkInvBlockEntity
         return this.isPowered;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void setAnimationStatus(@Nullable AssemblerAnimationStatus status) {
         this.animationStatus = status;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     @Nullable
     public AssemblerAnimationStatus getAnimationStatus() {
         return this.animationStatus;

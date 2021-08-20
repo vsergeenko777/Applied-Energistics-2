@@ -18,11 +18,18 @@
 
 package appeng.capabilities;
 
+import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
+import net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup;
+import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.IItemHandler;
 
 import appeng.api.storage.IStorageMonitorableAccessor;
+import appeng.core.AppEng;
 
 /**
  * Utility class that holds various capabilities, both by AE2 and other Mods.
@@ -32,18 +39,16 @@ public final class Capabilities {
     private Capabilities() {
     }
 
-    public static Capability<IStorageMonitorableAccessor> STORAGE_MONITORABLE_ACCESSOR;
+    public static final BlockApiLookup<IItemHandler, Direction> ITEM = BlockApiLookup.get(
+            new ResourceLocation("forge:item"), IItemHandler.class, Direction.class);
 
-    public static Capability<IEnergyStorage> FORGE_ENERGY;
+    public static final BlockApiLookup<IEnergyStorage, Direction> ENERGY = BlockApiLookup.get(
+            new ResourceLocation("forge:energy"), IEnergyStorage.class, Direction.class);
 
-    @CapabilityInject(IStorageMonitorableAccessor.class)
-    private static void capIStorageMonitorableAccessorRegistered(Capability<IStorageMonitorableAccessor> cap) {
-        STORAGE_MONITORABLE_ACCESSOR = cap;
-    }
+    public static final ItemApiLookup<IEnergyStorage, ContainerItemContext> ENERGY_STORAGE = ItemApiLookup.get(
+            new ResourceLocation("forge:energy"), IEnergyStorage.class, ContainerItemContext.class);
 
-    @CapabilityInject(IEnergyStorage.class)
-    private static void capIEnergyStorageRegistered(Capability<IEnergyStorage> cap) {
-        FORGE_ENERGY = cap;
-    }
+    public static final BlockApiLookup<IStorageMonitorableAccessor, Direction> GRID_STORAGE_ACCESSOR = BlockApiLookup
+            .get(AppEng.makeId("storage"), IStorageMonitorableAccessor.class, Direction.class);
 
 }

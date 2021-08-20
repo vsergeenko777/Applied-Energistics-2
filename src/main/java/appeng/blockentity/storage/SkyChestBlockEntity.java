@@ -25,6 +25,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.EnvironmentInterface;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -58,7 +60,7 @@ import appeng.menu.implementations.SkyChestMenu;
 import appeng.util.inv.AppEngInternalInventory;
 
 @SuppressWarnings("JavadocReference")
-@OnlyIn(value = Dist.CLIENT, _interface = LidBlockEntity.class)
+@EnvironmentInterface(value = EnvType.CLIENT, itf = LidBlockEntity.class)
 public class SkyChestBlockEntity extends AEBaseInvBlockEntity implements ClientTickingBlockEntity, LidBlockEntity {
 
     private final AppEngInternalInventory inv = new AppEngInternalInventory(this, 9 * 4);

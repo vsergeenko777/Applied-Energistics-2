@@ -25,6 +25,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 
@@ -144,7 +145,8 @@ public class QuartzKnifeMenu extends AEBaseMenu {
                 Inventory playerInv = QuartzKnifeMenu.this.getPlayerInventory();
                 item.hurtAndBreak(1, playerInv.player, p -> {
                     playerInv.setItem(playerInv.selected, ItemStack.EMPTY);
-                    MinecraftForge.EVENT_BUS.post(new PlayerDestroyItemEvent(playerInv.player, before, null));
+                    // FIXME FABRIC no such event
+                    // MinecraftForge.EVENT_BUS.post(new PlayerDestroyItemEvent(playerInv.player, before, null));
                 });
 
                 QuartzKnifeMenu.this.broadcastChanges();

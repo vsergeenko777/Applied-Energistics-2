@@ -24,7 +24,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import appeng.api.inventories.ISegmentedInventory;
@@ -34,6 +33,8 @@ import appeng.api.storage.IMEInventory;
 import appeng.api.storage.IStorageChannel;
 import appeng.api.storage.StorageChannels;
 import appeng.api.storage.data.IAEItemStack;
+import appeng.blockentity.inventory.AppEngInternalAEInventory;
+import appeng.capabilities.Capabilities;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEParts;
 import appeng.core.settings.TickRates;
@@ -62,7 +63,7 @@ public class ItemStorageBusPart extends AbstractStorageBusPart<IAEItemStack, IIt
     private final AppEngInternalAEInventory config = new AppEngInternalAEInventory(this, 63);
 
     public ItemStorageBusPart(final ItemStack is) {
-        super(TickRates.ItemStorageBus, is, CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+        super(TickRates.ItemStorageBus, is, Capabilities.ITEM);
     }
 
     @Override

@@ -45,6 +45,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.client.model.data.IModelData;
 
 import appeng.api.config.AccessRestriction;
@@ -66,6 +67,7 @@ import appeng.api.storage.data.IAEItemStack;
 import appeng.api.storage.data.IItemList;
 import appeng.core.AEConfig;
 import appeng.core.definitions.AEParts;
+import appeng.hooks.AECustomEntityItem;
 import appeng.items.parts.PartModels;
 import appeng.me.storage.MEInventoryHandler;
 import appeng.menu.MenuLocator;
@@ -267,8 +269,8 @@ public class FormationPlanePart extends AbstractFormationPlanePart<IAEItemStack>
         Entity entity = new ItemEntity(level, centerX, centerY, centerZ, is.copy());
 
         // Replace it if there is a custom entity
-        if (is.getItem().hasCustomEntity(is)) {
-            Entity result = is.getItem().createEntity(level, entity, is);
+        if (is.getItem() instanceof AECustomEntityItem customEntityItem) {
+            Entity result = customEntityItem.replaceItemEntity((ServerLevel) level, (ItemEntity) entity, is);
             // Destroy the old one, in case it's spawned somehow and replace with the new
             // one.
             if (result != null) {
@@ -330,8 +332,8 @@ public class FormationPlanePart extends AbstractFormationPlanePart<IAEItemStack>
 
     @Nonnull
     @Override
-    public IModelData getModelData() {
-        return new PlaneModelData(getConnections());
+    public Object getRenderAttachmentData() {
+        return getConnections();
     }
 
     @Override
