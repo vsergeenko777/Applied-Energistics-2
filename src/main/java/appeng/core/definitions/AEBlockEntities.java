@@ -41,8 +41,6 @@ import appeng.blockentity.crafting.CraftingBlockEntity;
 import appeng.blockentity.crafting.CraftingMonitorBlockEntity;
 import appeng.blockentity.crafting.CraftingStorageBlockEntity;
 import appeng.blockentity.crafting.MolecularAssemblerBlockEntity;
-import appeng.blockentity.grindstone.CrankBlockEntity;
-import appeng.blockentity.grindstone.GrinderBlockEntity;
 import appeng.blockentity.misc.CellWorkbenchBlockEntity;
 import appeng.blockentity.misc.ChargerBlockEntity;
 import appeng.blockentity.misc.CondenserBlockEntity;
@@ -82,10 +80,6 @@ public final class AEBlockEntities {
 
     private static final Map<ResourceLocation, BlockEntityType<?>> BLOCK_ENTITY_TYPES = new HashMap<>();
 
-    public static final BlockEntityType<GrinderBlockEntity> GRINDSTONE = create("grindstone", GrinderBlockEntity.class,
-            GrinderBlockEntity::new, AEBlocks.GRINDSTONE);
-    public static final BlockEntityType<CrankBlockEntity> CRANK = create("crank", CrankBlockEntity.class,
-            CrankBlockEntity::new, AEBlocks.CRANK);
     public static final BlockEntityType<InscriberBlockEntity> INSCRIBER = create("inscriber",
             InscriberBlockEntity.class,
             InscriberBlockEntity::new, AEBlocks.INSCRIBER);

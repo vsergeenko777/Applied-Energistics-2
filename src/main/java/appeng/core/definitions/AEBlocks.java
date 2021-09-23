@@ -51,8 +51,6 @@ import appeng.block.crafting.CraftingStorageBlock;
 import appeng.block.crafting.CraftingStorageItem;
 import appeng.block.crafting.CraftingUnitBlock;
 import appeng.block.crafting.MolecularAssemblerBlock;
-import appeng.block.grindstone.CrankBlock;
-import appeng.block.grindstone.GrinderBlock;
 import appeng.block.misc.CellWorkbenchBlock;
 import appeng.block.misc.ChargerBlock;
 import appeng.block.misc.CondenserBlock;
@@ -92,7 +90,6 @@ import appeng.debug.EnergyGeneratorBlock;
 import appeng.debug.ItemGenBlock;
 import appeng.debug.PhantomNodeBlock;
 import appeng.decorative.AEDecorativeBlock;
-import appeng.decorative.solid.ChargedQuartzOreBlock;
 import appeng.decorative.solid.QuartzGlassBlock;
 import appeng.decorative.solid.QuartzLampBlock;
 import appeng.decorative.solid.QuartzOreBlock;
@@ -118,7 +115,6 @@ public final class AEBlocks {
 
     // spotless:off
     public static final BlockDefinition<QuartzOreBlock> QUARTZ_ORE = block(AEBlockIds.QUARTZ_ORE, () -> new QuartzOreBlock(QUARTZ_PROPERTIES));
-    public static final BlockDefinition<ChargedQuartzOreBlock> QUARTZ_ORE_CHARGED = block(AEBlockIds.QUARTZ_ORE_CHARGED, () -> new ChargedQuartzOreBlock(QUARTZ_PROPERTIES));
     public static final BlockDefinition<MatrixFrameBlock> MATRIX_FRAME = block(AEBlockIds.MATRIX_FRAME, MatrixFrameBlock::new);
 
     public static final BlockDefinition<AEDecorativeBlock> QUARTZ_BLOCK = block(AEBlockIds.QUARTZ_BLOCK, () -> new AEDecorativeBlock(QUARTZ_PROPERTIES));
@@ -142,8 +138,6 @@ public final class AEBlocks {
     public static final BlockDefinition<SkyChestBlock> SMOOTH_SKY_STONE_CHEST = block(AEBlockIds.SMOOTH_SKY_STONE_CHEST, () -> new SkyChestBlock(SkyChestBlock.SkyChestType.BLOCK, SKY_STONE_CHEST_PROPS));
 
     public static final BlockDefinition<SkyCompassBlock> SKY_COMPASS = block(AEBlockIds.SKY_COMPASS, () -> new SkyCompassBlock(defaultProps(Material.DECORATION)));
-    public static final BlockDefinition<GrinderBlock> GRINDSTONE = block(AEBlockIds.GRINDSTONE, () -> new GrinderBlock(defaultProps(Material.STONE).strength(3.2f)));
-    public static final BlockDefinition<CrankBlock> CRANK = block(AEBlockIds.CRANK, () -> new CrankBlock(defaultProps(Material.WOOD).noOcclusion()));
     public static final BlockDefinition<InscriberBlock> INSCRIBER = block(AEBlockIds.INSCRIBER, () -> new InscriberBlock(defaultProps(Material.METAL).noOcclusion()));
     public static final BlockDefinition<WirelessBlock> WIRELESS_ACCESS_POINT = block(AEBlockIds.WIRELESS_ACCESS_POINT, WirelessBlock::new);
     public static final BlockDefinition<ChargerBlock> CHARGER = block(AEBlockIds.CHARGER, ChargerBlock::new);
