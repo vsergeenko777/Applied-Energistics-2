@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -65,6 +66,18 @@ public final class AEItemStack extends AEStack<IAEItemStack> implements IAEItemS
         this.setStackSize(size);
         this.setCraftable(false);
         this.setCountRequestable(0);
+    }
+
+    @Nullable
+    public static AEItemStack of(@Nonnull ItemVariant variant, long amount) {
+        if (variant.isBlank()) {
+            return null;
+        }
+
+        // TODO: Optimize later
+        var stack = variant.toStack();
+
+        return new AEItemStack(AEItemStackRegistry.getRegisteredStack(stack), amount);
     }
 
     @Nullable
@@ -256,6 +269,11 @@ public final class AEItemStack extends AEStack<IAEItemStack> implements IAEItemS
     @Override
     public ItemStack getDefinition() {
         return this.sharedStack.getDefinition();
+    }
+
+    @Override
+    public ItemVariant getVariant() {
+        return this.sharedStack.getVariant();
     }
 
     AESharedItemStack getSharedStack() {

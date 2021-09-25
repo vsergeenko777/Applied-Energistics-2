@@ -18,21 +18,6 @@
 
 package appeng.parts.misc;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.phys.Vec3;
-
 import appeng.api.config.AccessRestriction;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.IncludeExclude;
@@ -73,6 +58,19 @@ import appeng.parts.automation.UpgradeablePart;
 import appeng.util.Platform;
 import appeng.util.prioritylist.FuzzyPriorityList;
 import appeng.util.prioritylist.PrecisePriorityList;
+import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.phys.Vec3;
+
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @param <A> "API class" of the handler, i.e. IItemHandler or IFluidHandler.

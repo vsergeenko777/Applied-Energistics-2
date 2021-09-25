@@ -18,11 +18,11 @@
 
 package appeng.debug;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
-import javax.annotation.Nonnull;
-
+import appeng.api.inventories.BaseInternalInventory;
+import appeng.api.inventories.InternalInventory;
+import appeng.blockentity.AEBaseBlockEntity;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
@@ -33,15 +33,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import appeng.api.inventories.BaseInternalInventory;
-import appeng.api.inventories.InternalInventory;
-import appeng.blockentity.AEBaseBlockEntity;
+import javax.annotation.Nonnull;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 public class ItemGenBlockEntity extends AEBaseBlockEntity {
 
@@ -76,8 +71,8 @@ public class ItemGenBlockEntity extends AEBaseBlockEntity {
         super.load(data);
     }
 
-    public IItemHandler getItemHandler() {
-        return this.handler;
+    public Storage<ItemVariant> getItemHandler() {
+        return this.handler.toStorage();
     }
 
     public void setItem(Item item) {

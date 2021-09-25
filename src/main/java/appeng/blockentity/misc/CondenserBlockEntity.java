@@ -24,8 +24,6 @@ import java.util.Iterator;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.jetbrains.annotations.NotNull;
-
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
@@ -39,15 +37,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import appeng.api.config.CondenserOutput;
 import appeng.api.config.Setting;
@@ -66,7 +55,6 @@ import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
 import appeng.blockentity.AEBaseInvBlockEntity;
 import appeng.capabilities.Capabilities;
-import appeng.blockentity.inventory.AppEngInternalInventory;
 import appeng.core.definitions.AEItems;
 import appeng.util.ConfigManager;
 import appeng.util.IConfigManagerListener;
@@ -205,25 +193,12 @@ public class CondenserBlockEntity extends AEBaseInvBlockEntity implements IConfi
         return externalInv;
     }
 
-    public IFluidHandler getFluidHandler() {
+    public Storage<FluidVariant> getFluidHandler() {
         return fluidHandler;
     }
 
     public MEHandler getMEHandler() {
         return meHandler;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return (LazyOptional<T>) LazyOptional.of(() -> this.externalInv);
-        } else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return (LazyOptional<T>) LazyOptional.of(() -> this.fluidHandler);
-        } else if (capability == Capabilities.STORAGE_MONITORABLE_ACCESSOR) {
-            return (LazyOptional<T>) LazyOptional.of(() -> this.meHandler);
-        }
-        return super.getCapability(capability, facing);
     }
 
     private class CondenseItemHandler extends BaseInternalInventory {

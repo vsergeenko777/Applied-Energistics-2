@@ -30,11 +30,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.EmptyHandler;
-import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.client.model.data.ModelDataMap;
-import net.minecraftforge.client.model.data.ModelProperty;
 
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.GridFlags;
@@ -118,7 +113,7 @@ public class QuantumBridgeBlockEntity extends AENetworkInvBlockEntity
     }
 
     @Override
-    protected InternalInventory getExposedInventoryForSide(Direction side) {
+    public InternalInventory getExposedInventoryForSide(Direction side) {
         if (this.isCenter()) {
             return this.internalInventory;
         }

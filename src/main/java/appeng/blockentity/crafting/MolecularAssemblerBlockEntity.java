@@ -69,12 +69,6 @@ import appeng.menu.NullMenu;
 import appeng.parts.automation.DefinitionUpgradeInventory;
 import appeng.parts.automation.UpgradeInventory;
 import appeng.util.CraftingRemainders;
-import appeng.util.InventoryAdaptor;
-import appeng.util.helpers.ItemHandlerUtil;
-import appeng.util.inv.InvOperation;
-import appeng.util.inv.WrapperChainedItemHandler;
-import appeng.util.inv.WrapperFilteredItemHandler;
-import appeng.util.Platform;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.CombinedInternalInventory;
 import appeng.util.inv.FilteredInternalInventory;
@@ -285,7 +279,7 @@ public class MolecularAssemblerBlockEntity extends AENetworkInvBlockEntity
     }
 
     @Override
-    protected InternalInventory getExposedInventoryForSide(Direction side) {
+    public InternalInventory getExposedInventoryForSide(Direction side) {
         return this.gridInvExt;
     }
 

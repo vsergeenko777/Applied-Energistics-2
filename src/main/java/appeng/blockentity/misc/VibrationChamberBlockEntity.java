@@ -31,8 +31,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.common.ForgeHooks;
 
 import appeng.api.config.Actionable;
 import appeng.api.inventories.InternalInventory;
@@ -110,7 +108,7 @@ public class VibrationChamberBlockEntity extends AENetworkInvBlockEntity impleme
     }
 
     @Override
-    protected InternalInventory getExposedInventoryForSide(@Nonnull Direction facing) {
+    public InternalInventory getExposedInventoryForSide(@Nonnull Direction facing) {
         return this.invExt;
     }
 

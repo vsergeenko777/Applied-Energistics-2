@@ -18,18 +18,14 @@
 
 package appeng.capabilities;
 
+import appeng.api.storage.IStorageMonitorableAccessor;
+import appeng.core.AppEng;
 import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
 import net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup;
 import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.IItemHandler;
-
-import appeng.api.storage.IStorageMonitorableAccessor;
-import appeng.core.AppEng;
 
 /**
  * Utility class that holds various capabilities, both by AE2 and other Mods.
@@ -38,9 +34,6 @@ public final class Capabilities {
 
     private Capabilities() {
     }
-
-    public static final BlockApiLookup<IItemHandler, Direction> ITEM = BlockApiLookup.get(
-            new ResourceLocation("forge:item"), IItemHandler.class, Direction.class);
 
     public static final BlockApiLookup<IEnergyStorage, Direction> ENERGY = BlockApiLookup.get(
             new ResourceLocation("forge:energy"), IEnergyStorage.class, Direction.class);

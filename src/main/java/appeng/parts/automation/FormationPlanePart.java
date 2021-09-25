@@ -45,8 +45,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.client.model.data.IModelData;
 
 import appeng.api.config.AccessRestriction;
 import appeng.api.config.Actionable;

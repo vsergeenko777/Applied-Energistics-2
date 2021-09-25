@@ -21,7 +21,6 @@ package appeng.util.helpers;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

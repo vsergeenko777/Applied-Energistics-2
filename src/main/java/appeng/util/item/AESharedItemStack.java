@@ -18,16 +18,17 @@
 
 package appeng.util.item;
 
-import java.util.Objects;
-
 import com.google.common.base.Preconditions;
-
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.Objects;
 
 final class AESharedItemStack {
 
     private final ItemStack itemStack;
+    private final ItemVariant variant;
     private final int itemId;
     private final int itemDamage;
     private final int hashCode;
@@ -44,6 +45,7 @@ final class AESharedItemStack {
      */
     private AESharedItemStack(ItemStack itemStack, int damage) {
         this.itemStack = itemStack;
+        this.variant = ItemVariant.of(itemStack);
         this.itemId = Item.getId(itemStack.getItem());
         this.itemDamage = damage;
 
@@ -89,4 +91,7 @@ final class AESharedItemStack {
                 this.itemStack.hasTag() ? this.itemStack.getTag() : 0);
     }
 
+    public ItemVariant getVariant() {
+        return variant;
+    }
 }

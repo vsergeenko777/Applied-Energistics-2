@@ -42,7 +42,7 @@ public class ItemP2PTunnelPart extends CapabilityP2PTunnelPart<ItemP2PTunnelPart
     }
 
     public ItemP2PTunnelPart(final ItemStack is) {
-        super(is, Capabilities.ITEM);
+        super(is, null); // TODO FABRIC 117
         inputHandler = new InputItemHandler();
         outputHandler = new OutputItemHandler();
         emptyHandler = NULL_ITEM_HANDLER;

@@ -36,6 +36,7 @@ import com.google.common.collect.Iterables;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -919,6 +920,10 @@ public class Platform {
      */
     public static boolean areBlockEntitiesTicking(@Nullable Level level, BlockPos pos) {
         return level instanceof ServerLevel serverLevel && serverLevel.isPositionTickingWithEntitiesLoaded(pos);
+    }
+
+    public static Transaction openOrJoinTx() {
+        return Transaction.openOuter();
     }
 
 }

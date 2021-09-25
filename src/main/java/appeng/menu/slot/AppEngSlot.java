@@ -28,9 +28,6 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import appeng.api.inventories.InternalInventory;
 import appeng.client.gui.Icon;
@@ -90,7 +87,7 @@ public class AppEngSlot extends Slot {
             return ItemStack.EMPTY;
         }
 
-        if (this.getSlotIndex() >= this.inventory.size()) {
+        if (this.slot >= this.inventory.size()) {
             return ItemStack.EMPTY;
         }
 

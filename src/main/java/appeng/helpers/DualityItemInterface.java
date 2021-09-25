@@ -48,11 +48,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.RangedWrapper;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import appeng.api.AEApi;
 import appeng.api.config.Actionable;
@@ -87,8 +82,6 @@ import appeng.api.util.AECableType;
 import appeng.api.util.DimensionalBlockPos;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
-import appeng.blockentity.inventory.AppEngInternalAEInventory;
-import appeng.blockentity.inventory.AppEngInternalInventory;
 import appeng.hooks.ICustomPickBlock;
 import appeng.me.storage.ItemHandlerAdapter;
 import appeng.me.storage.NullInventory;
@@ -887,7 +880,7 @@ public class DualityItemInterface
     private class InterfaceInventory extends ItemHandlerAdapter implements IMEMonitor<IAEItemStack> {
 
         InterfaceInventory() {
-            super(storage.toItemHandler());
+            super(storage.toStorage());
             this.setActionSource(actionSource);
         }
 

@@ -38,8 +38,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.common.crafting.IShapedRecipe;
 
 import appeng.api.config.Actionable;
 import appeng.api.config.SecurityPermissions;

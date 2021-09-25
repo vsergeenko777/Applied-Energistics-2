@@ -20,6 +20,7 @@ import appeng.parts.networking.EnergyAcceptorPart;
 import appeng.parts.p2p.FEP2PTunnelPart;
 import appeng.parts.p2p.FluidP2PTunnelPart;
 import appeng.parts.p2p.ItemP2PTunnelPart;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 
 public final class InitApiLookup {
 
@@ -40,13 +41,9 @@ public final class InitApiLookup {
         initEnergyAcceptors();
         initP2P();
 
-        Capabilities.ITEM.registerFallback((world, pos, state, blockEntity, direction) -> {
+        ItemStorage.SIDED.registerFallback((world, pos, state, blockEntity, direction) -> {
             if (blockEntity instanceof AEBaseInvBlockEntity baseInvBlockEntity) {
-                if (direction == null) {
-                    return baseInvBlockEntity.getInternalInventory();
-                } else {
-                    return baseInvBlockEntity.getItemHandlerForSide(direction);
-                }
+                return baseInvBlockEntity.getExposedInventoryForSide(direction).toStorage();
             }
             return null;
         });
@@ -60,7 +57,8 @@ public final class InitApiLookup {
     }
 
     private static void initP2P() {
-        PartApiLookup.register(Capabilities.ITEM, (part, context) -> part.getExposedApi(), ItemP2PTunnelPart.class);
+        // TODO FABRIC 117
+//        PartApiLookup.register(ItemStorage.SIDED, (part, context) -> part.getExposedApi(), ItemP2PTunnelPart.class);
         PartApiLookup.register(Capabilities.ENERGY, (part, context) -> part.getExposedApi(), FEP2PTunnelPart.class);
         PartApiLookup.register(FluidStorage.SIDED, (part, context) -> part.getExposedApi(), FluidP2PTunnelPart.class);
     }
@@ -72,10 +70,10 @@ public final class InitApiLookup {
     }
 
     private static void initItemInterface() {
-        PartApiLookup.register(Capabilities.ITEM, (part, context) -> part.getInterfaceDuality().getStorage(),
+        PartApiLookup.register(ItemStorage.SIDED, (part, context) -> part.getInterfaceDuality().getStorage().toStorage(),
                 ItemInterfacePart.class);
-        Capabilities.ITEM.registerForBlockEntities((blockEntity, context) -> {
-            return ((ItemInterfaceBlockEntity) blockEntity).getInterfaceDuality().getStorage();
+        ItemStorage.SIDED.registerForBlockEntities((blockEntity, context) -> {
+            return ((ItemInterfaceBlockEntity) blockEntity).getInterfaceDuality().getStorage().toStorage();
         }, AEBlockEntities.INTERFACE);
         PartApiLookup.register(Capabilities.GRID_STORAGE_ACCESSOR,
                 (part, context) -> part.getInterfaceDuality().getGridStorageAccessor(), ItemInterfacePart.class);
@@ -100,8 +98,8 @@ public final class InitApiLookup {
     private static void initCondenser() {
         // Condenser will always return its external inventory, even when context is null
         // (unlike the base class it derives from)
-        Capabilities.ITEM.registerForBlockEntities((blockEntity, context) -> {
-            return ((CondenserBlockEntity) blockEntity).getExternalInv();
+        ItemStorage.SIDED.registerForBlockEntities((blockEntity, context) -> {
+            return ((CondenserBlockEntity) blockEntity).getExternalInv().toStorage();
         }, AEBlockEntities.CONDENSER);
         FluidStorage.SIDED.registerForBlockEntities(((blockEntity, context) -> {
             return ((CondenserBlockEntity) blockEntity).getFluidHandler();
@@ -122,7 +120,7 @@ public final class InitApiLookup {
     }
 
     private static void initMisc() {
-        Capabilities.ITEM.registerForBlockEntities((blockEntity, context) -> {
+        ItemStorage.SIDED.registerForBlockEntities((blockEntity, context) -> {
             return ((ItemGenBlockEntity) blockEntity).getItemHandler();
         }, AEBlockEntities.DEBUG_ITEM_GEN);
         Capabilities.ENERGY.registerSelf(AEBlockEntities.DEBUG_ENERGY_GEN);

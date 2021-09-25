@@ -45,14 +45,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import appeng.api.config.AccessRestriction;
 import appeng.api.config.Actionable;
@@ -99,8 +91,6 @@ import appeng.api.util.AEColor;
 import appeng.api.util.IConfigManager;
 import appeng.blockentity.ServerTickingBlockEntity;
 import appeng.blockentity.grid.AENetworkPowerBlockEntity;
-import appeng.capabilities.Capabilities;
-import appeng.blockentity.inventory.AppEngInternalInventory;
 import appeng.core.definitions.AEBlocks;
 import appeng.helpers.IPriorityHost;
 import appeng.me.helpers.MEMonitorHandler;
@@ -456,7 +446,7 @@ public class ChestBlockEntity extends AENetworkPowerBlockEntity
     }
 
     @Override
-    protected InternalInventory getExposedInventoryForSide(@Nonnull Direction side) {
+    public InternalInventory getExposedInventoryForSide(@Nonnull Direction side) {
         if (side == this.getForward()) {
             return this.cellInventory;
         } else {

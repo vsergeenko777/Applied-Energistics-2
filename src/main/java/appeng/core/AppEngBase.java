@@ -61,7 +61,6 @@ import appeng.hooks.ticking.TickHandler;
 import appeng.init.InitApiLookup;
 import appeng.init.InitBlockEntities;
 import appeng.init.InitBlocks;
-import appeng.init.InitCapabilities;
 import appeng.init.InitDispenserBehavior;
 import appeng.init.InitEntityTypes;
 import appeng.init.InitItems;
